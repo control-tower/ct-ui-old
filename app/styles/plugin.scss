@@ -1,0 +1,15 @@
+.mainIcon{
+    font-size: 35px;
+}
+.card{
+    float: left;
+    margin: 2%;
+    width: 21%;
+
+    .deactivate:hover{
+        background: rgba(255, 0 , 0, 0.2) !important;
+    }
+    .activate:hover{
+        background: rgba(0, 255 , 0, 0.2) !important;
+    }
+}

@@ -1,0 +1,26 @@
+.filter {
+    float: left;
+    width: 30%;
+}
+.filterButton {
+    float: left;
+}
+.filterPanel {
+    display: block;
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.chartPanel{
+    width: 50%;
+    float: left;
+    .chartTitle{
+        font-weight: bold;
+        font-size: 14pt;
+        margin-bottom: 20px;
+        display: block;
+    }
+}
