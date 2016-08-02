@@ -1,9 +1,9 @@
-import {BASE_API_URL, LOGIN, LOGIN_FAIL, GENERATE_TOKEN, LOGOUT} from '../constants';
-import {showNotification} from './notification';
-import fetch, {setBasicAuth, removeBasicAuth} from '../utils/fetch';
+import { BASE_API_URL, LOGIN, LOGIN_FAIL, GENERATE_TOKEN, LOGOUT } from '../constants';
+import { showNotification } from './notification';
+import fetch, { setBasicAuth, removeBasicAuth } from '../utils/fetch';
 
 export function goToLogin() {
-  window.location = `${BASE_API_URL}/auth?callbackUrl=${window.location.protocol + '//'+ window.location.host}`;
+  window.location = `${BASE_API_URL}/auth?callbackUrl=${`${window.location.protocol}//${window.location.host}`}`;
   return { type: 'noexist' };
 }
 
@@ -15,17 +15,17 @@ export function login(username, password) {
 
     fetch(`${BASE_API_URL}/auth/checkLogged`, {
       method: 'GET',
-      credentials: 'include'
+      credentials: 'include',
     }).then((response) => {
       if (response.ok) {
         return response.json();
       }
       throw new Error('401');
     }).then((data) => {
-      dispatch({type: LOGIN, payload: data});
+      dispatch({ type: LOGIN, payload: data });
       dispatch(showNotification('Login correct'));
     }, () => {
-      dispatch({type: LOGIN_FAIL});
+      dispatch({ type: LOGIN_FAIL });
       dispatch(showNotification('Login fail'));
     });
   };
