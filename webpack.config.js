@@ -13,7 +13,6 @@ const webpackConfig = {
     historyApiFallback: true,
   },
   entry: [
-    'webpack-hot-middleware/client',
     'whatwg-fetch',
     './app/src/index.jsx',
   ],
@@ -53,7 +52,6 @@ const webpackConfig = {
       filename: 'index.html'
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(process.env.NODE_ENV || 'development'),

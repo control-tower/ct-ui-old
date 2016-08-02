@@ -35,6 +35,7 @@ class UserView extends React.Component {
         rows.push(
           <tr key={i}>
             <td>{user._id}</td>
+            <td>{user.email}</td>
             <td>{user.provider}</td>
             <td>
               <Dropdown
@@ -59,6 +60,7 @@ class UserView extends React.Component {
           <thead>
             <tr>
               <td>Id</td>
+              <td>Email</td>
               <td>Provider</td>
               <td>Rol</td>
             </tr>
