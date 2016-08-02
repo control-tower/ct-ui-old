@@ -13,7 +13,7 @@ export default function (props) {
         <Route path="endpoints" component={Endpoint} />
         <Route path="microservices" component={Microservice} />
         <Route path="profile" component={Profile} />
-        <Route path="login" component={Login} />
+        {/* <Route path="login" component={Login} /> */}
         <Route path="users" component={User} />
       </Route>
     </Router>

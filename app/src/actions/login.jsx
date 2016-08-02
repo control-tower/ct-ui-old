@@ -46,6 +46,7 @@ export function generateToken() {
   return (dispatch) => {
     fetch(`${BASE_API_URL}/auth/generate-token`, {
       method: 'GET',
+      credentials: 'include',
     }).then((response) => {
       if (response.ok) {
         return response.json();
