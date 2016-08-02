@@ -26,7 +26,8 @@ class AppView extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.login.correct === false && this.props.login.correct !== nextProps.login.correct) {
-      window.location = window.location.href.replace(window.location.pathname, '');
+      this.props.goToLogin();
+      
     }
   }
 
