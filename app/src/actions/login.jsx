@@ -3,7 +3,7 @@ import {showNotification} from './notification';
 import fetch, {setBasicAuth, removeBasicAuth} from '../utils/fetch';
 
 export function goToLogin() {
-  window.location = `${BASE_API_URL}/auth?callbackUrl=${window.location.href.replace(window.location.pathname, '')}`;
+  window.location = `${BASE_API_URL}/auth?callbackUrl=${window.location.protocol + '//'+ window.location.host}`;
   return { type: 'noexist' };
 }
 
