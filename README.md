@@ -1,1 +1,1 @@
-# Oauth plugin to Control tower application
+# Manage UI to Control tower api-gateway
