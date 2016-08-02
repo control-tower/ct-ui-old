@@ -7,7 +7,7 @@ export default function (props) {
   return (
     <Router history={props.history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Dashboard} />
+        <IndexRoute component={Profile} />
         <Route path="dashboard" component={Dashboard} />
         <Route path="plugins" component={Plugin} />
         <Route path="endpoints" component={Endpoint} />
