@@ -1,4 +1,4 @@
-export const BASE_API_URL = 'http://api2.gateway.dev:9000';
+export const BASE_API_URL = 'http://tower.dev:9000';
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
