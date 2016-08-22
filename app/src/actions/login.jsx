@@ -13,7 +13,7 @@ export function login(username, password) {
       setBasicAuth(username, password);
     }
 
-    fetch(`${BASE_API_URL}/auth/checkLogged`, {
+    fetch(`${BASE_API_URL}/auth/check-logged`, {
       method: 'GET',
       credentials: 'include',
     }).then((response) => {
