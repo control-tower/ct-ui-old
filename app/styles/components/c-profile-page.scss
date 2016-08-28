@@ -1,0 +1,31 @@
+@import '../base.scss';
+
+.c-profile-page {
+  display: block;
+  margin: 0 auto;
+  width: 700px;
+
+  .text-token {
+    line-height: 1.7;
+  }
+
+  .content-buttons {
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin-right: 100px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  hr {
+    background-color: $color-5;
+    border: 0;
+    height: 2px;
+    margin: 25px 0;
+  }
+}

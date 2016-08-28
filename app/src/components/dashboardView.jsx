@@ -1,13 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Treemap, AreaChart } from 'react-d3';
-import {
-  Button,
-  FontIcon,
-  DatePicker,
-} from 'react-toolbox';
 import { Line } from 'react-chartjs';
-import generalStyle from '../../styles/general';
-import dashboardStyle from '../../styles/dashboard';
 
 class DashboardView extends React.Component {
 
@@ -74,48 +67,7 @@ class DashboardView extends React.Component {
   render() {
     return (
       <div>
-        <h2>
-          <FontIcon value="timeline" className={generalStyle.mainIcon} />
-          Dashboard
-          <Button label="" icon="refresh" onClick={() => this.props.getStadistics()} />
-        </h2>
-        <div className={dashboardStyle.filterPanel}>
-          <div className={dashboardStyle.filter}>
-            <DatePicker
-              label="From"
-              onChange={(value) => this.handleChange('from', value)}
-              value={this.state.from}
-              className={dashboardStyle.filter}
-            />
-          </div>
-          <div className={dashboardStyle.filter}>
-            <DatePicker
-              label="To"
-              onChange={(value) => this.handleChange('to', value)}
-              value={this.state.to}
-              className={dashboardStyle.filter}
-            />
-          </div>
-          <Button icon="filter_list" floating onClick={() => this.filter()} className={dashboardStyle.filterButton} />
-        </div>
-        <div className={dashboardStyle.chartPanel}>
-          <span className={dashboardStyle.chartTitle}>Average time by request</span>
-          <Treemap
-            data={this.state.timeByRequest}
-            width={450}
-            height={250}
-            textColor="#484848"
-            fontSize="12px"
-            hoverAnimation
-          />
-        </div>
-        <div className={dashboardStyle.chartPanel}>
-          <span className={dashboardStyle.chartTitle}>Num request by day</span>
-          {this.state.requestByDay && <Line
-            data={this.state.requestByDay}
-            width="450" height="250"
-          />}
-        </div>
+        
       </div>
     );
   }

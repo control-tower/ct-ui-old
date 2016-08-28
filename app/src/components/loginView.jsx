@@ -1,12 +1,5 @@
 import React, { PropTypes } from 'react';
-import {
-  Button,
-  Input,
-} from 'react-toolbox';
-
-import loginStyle from '../../styles/login';
 class LoginView extends React.Component {
-
 
   constructor(props) {
     super(props);

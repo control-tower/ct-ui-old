@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Snackbar } from 'react-toolbox';
 
 class NotificationView extends React.Component {
 

@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import generalStyle from '../../styles/general';
-import { Button, FontIcon } from 'react-toolbox';
 import Time from 'react-time';
 
 class MicroserviceView extends React.Component {
@@ -24,24 +22,6 @@ class MicroserviceView extends React.Component {
     }
     return (
       <div>
-        <h2>
-          <FontIcon value="cloud" className={generalStyle.mainIcon} />
-          Microservices
-          <Button label="" icon="refresh" onClick={() => this.props.getMicroservices()} />
-        </h2>
-        <table className={generalStyle.mainTable}>
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Url</td>
-              <td>Status</td>
-              <td>Last check</td>
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
       </div>
     );
   }

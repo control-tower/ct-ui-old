@@ -1,0 +1,37 @@
+@import '../base.scss';
+
+.c-sidebar {
+  background-color: $color-4;
+  border-right: 1px solid $color-5;
+  height: 100%;
+  position: fixed;
+  width: 300px;
+
+  .sidebar-top {
+    padding: 20px 0 0;
+
+    img {
+      display: block;
+      margin: 0 auto 25px;
+      max-width: 200px;
+      width: 100%;
+    }
+
+    .sidebar-option {
+      color: $color-2;
+      display: block;
+      font-size: $font-size-normal;
+      padding: 25px 30px;
+      transition: .2s;
+
+      &:hover {
+        background-color: $color-6;
+      }
+
+      &.sidebar-option-selected {
+        background-color: $color-6;
+      }
+    }
+  }
+
+}

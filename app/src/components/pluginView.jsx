@@ -1,15 +1,4 @@
 import React, { PropTypes } from 'react';
-import {
-  Card,
-  CardTitle,
-  CardText,
-  CardActions,
-  Button,
-  FontIcon,
-  Dialog,
-} from 'react-toolbox';
-import pluginStyle from '../../styles/plugin';
-import generalStyle from '../../styles/general';
 
 class PluginView extends React.Component {
 
@@ -45,41 +34,8 @@ class PluginView extends React.Component {
 
   render() {
     const plugins = [];
-    if (this.props.plugins) {
-      this.props.plugins.forEach((plugin, index) => {
-        plugins.push(
-          <Card
-            key={index}
-            raised
-            className={pluginStyle.card}
-          >
-            <CardTitle title={plugin.name} />
-            <CardText>File/module: {plugin.mainFile}</CardText>
-            <CardActions>
-              <Button label="Edit" />
-              {plugin.active && <Button label="Deactivate" icon="clear" className={pluginStyle.deactivate} onClick={() => this.toggleActivePlugin(plugin, false)} />}
-              {!plugin.active && <Button label="Activate" icon="done" className={pluginStyle.activate} onClick={() => this.toggleActivePlugin(plugin, true)} />}
-            </CardActions>
-          </Card>
-        );
-      });
-    }
     return (
       <div>
-        <h2>
-          <FontIcon value="extension" className={generalStyle.mainIcon} />
-          Plugins
-        </h2>
-        {plugins}
-        <Dialog
-          actions={this.actions}
-          active={this.state.showDialog}
-          onEscKeyDown={() => this.cancel}
-          onOverlayClick={() => this.cancel}
-          title="Confirm"
-        >
-          <p>Sure that you want change the state of the plugin?</p>
-        </Dialog>
       </div>
     );
   }

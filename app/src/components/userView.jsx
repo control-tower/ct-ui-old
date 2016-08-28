@@ -1,7 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Button, FontIcon, Dropdown } from 'react-toolbox';
-import generalStyle from '../../styles/general';
-import userStyle from '../../styles/user';
 
 class UserView extends React.Component {
 
@@ -38,12 +35,6 @@ class UserView extends React.Component {
             <td>{user.email}</td>
             <td>{user.provider}</td>
             <td>
-              <Dropdown
-                auto
-                onChange={(e) => this.changeUser(e, user)}
-                source={roles}
-                value={user.role}
-              />
             </td>
           </tr>);
       }
@@ -51,24 +42,7 @@ class UserView extends React.Component {
 
     return (
       <div>
-        <h2>
-          <FontIcon value="account_circle" className={generalStyle.mainIcon} />
-          Users
-          <Button label="" icon="refresh" onClick={() => this.props.getUsers()} />
-        </h2>
-        <table className={generalStyle.mainTable}>
-          <thead>
-            <tr>
-              <td>Id</td>
-              <td>Email</td>
-              <td>Provider</td>
-              <td>Rol</td>
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
+
       </div>
     );
   }

@@ -1,11 +1,7 @@
 import React, { PropTypes } from 'react';
-import {
-  Button,
-  FontIcon,
-  Input,
-} from 'react-toolbox';
-import CopyToClipboard from 'react-copy-to-clipboard';
-import generalStyle from '../../styles/general';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import profileStyle from '../../styles/components/c-profile-page.scss';
+import buttonStyle from '../../styles/components/c-button.scss';
 
 class ProfileView extends React.Component {
 
@@ -24,19 +20,27 @@ class ProfileView extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>
-          <FontIcon value="face" className={generalStyle.mainIcon} />
-          Profile
-        </h2>
-        <Input type="text" label="Token" name="token" icon="vpn_key" value={this.state.token} disabled />
-        <Button label="Generate token" icon="refresh" onClick={() => this.props.generateToken()} accent />
-        {this.state.token && <CopyToClipboard text={this.state.token} onCopy={() => this.setState({ copied: true })}>
-          <Button label={!this.state.copied ? 'Copy' : 'Copied'} icon="content_copy" accent />
-        </CopyToClipboard>}
-        <p>
-          Add header:  Authorization: Bearer {this.state.token ? this.state.token : '<token>'};
-        </p>
+      <div className={layoutContentStyle['l-content']}>
+        <div className={profileStyle['c-profile-page']}>
+          <div className={profileStyle['text-token']}>
+            lasjdn823g8egfuh43hf34hf874dnisdou
+            if948h98h98h98h948hf98h9we8hf9w8hf9w
+            e8hf9we8hf9wehf9wehf9wehf9wehf9wehf9we
+            hf9wehf9wehf9wehf9wehf9wef9wehf9
+            we8hf9wh89f8hw9f8hw9fhw9fh9wfh9w8
+          </div>
+          <hr></hr>
+          <div className={profileStyle['content-buttons']}>
+            <button
+              type="button"
+              className={[buttonStyle['c-button'], buttonStyle['-basic']].join(' ')}
+            >Generate token</button>
+            <button
+              type="button"
+              className={[buttonStyle['c-button'], buttonStyle['-basic']].join(' ')}
+            >Copied</button>
+          </div>
+        </div>
       </div>
     );
   }
