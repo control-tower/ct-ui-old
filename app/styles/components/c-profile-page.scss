@@ -3,22 +3,37 @@
 .c-profile-page {
   display: block;
   margin: 0 auto;
-  width: 700px;
+  max-width: 700px;
+  width: 100%;
 
   .text-token {
     line-height: 1.7;
+    word-break: break-word;
   }
 
   .content-buttons {
-    display: flex;
-    justify-content: center;
+    display: block;
 
     button {
-      margin-right: 100px;
+      display: block;
+      margin-bottom: 20px;
+      width: 100%;
 
       &:last-child {
+        margin-bottom: 0;
         margin-right: 0;
       }
+
+      @media #{$mq-tablet} {
+        margin-bottom: 0;
+        margin-right: 100px;
+        width: auto;
+      }
+    }
+
+    @media #{$mq-tablet} {
+      display: flex;
+      justify-content: center;
     }
   }
 

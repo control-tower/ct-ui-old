@@ -8,8 +8,14 @@
 
   &.-basic {
     background-color: $color-3;
-    border: 1px solid $color-2;
+    border: 2px solid $color-2;
     box-shadow: 4px 4px 0 $color-2;
     padding: 15px 40px;
+    position: relative;
+
+    &:active{
+      box-shadow:0 0 0 transparent;
+      top:4px;
+    }
   }
 }

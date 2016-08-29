@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import sideBarStyles from '../../../styles/components/c-sidebar.scss';
+import logo from '../../../assets/logo/logoSideBar.png';
+
 
 class SideBar extends Component {
 
@@ -20,7 +22,7 @@ class SideBar extends Component {
       <div className={sideBarStyles['c-sidebar']}>
         <div className={sideBarStyles['sidebar-top']}>
           <div>
-            <img src="https://s3.postimg.org/97z9chtlv/logo_Side_Bar.png" alt="logo"></img>
+            <img src={logo} alt="logo"></img>
           </div>
           <Link
             className={(location.pathname === '/dashboard') ?
@@ -48,7 +50,7 @@ class SideBar extends Component {
             sideBarStyles['sidebar-option']} to="users"
           >Users</Link>
           <Link
-            className={(location.pathname === '/profile') ?
+            className={(location.pathname === '/profile' || location.pathname === '/') ?
             [sideBarStyles['sidebar-option'], sideBarStyles['sidebar-option-selected']].join(' ') :
             sideBarStyles['sidebar-option']} to="profile"
           >Profile</Link>

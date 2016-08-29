@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import cardListStyle from '../../styles/components/c-card-list.scss';
 
 class PluginView extends React.Component {
 
@@ -34,8 +36,22 @@ class PluginView extends React.Component {
 
   render() {
     const plugins = [];
+    if (this.props.plugins) {
+      this.props.plugins.forEach((plugin, index) => {
+        plugins.push(
+          <div key={index} className={cardListStyle['c-card-list']}>
+            <div className={cardListStyle['card-title']}>
+              <h2>
+                {plugin.name}
+              </h2>
+            </div>
+          </div>
+        );
+      });
+    }
     return (
-      <div>
+      <div className={[layoutContentStyle['l-content'], layoutContentStyle['-list-card']].join(' ')}>
+        {plugins}
       </div>
     );
   }

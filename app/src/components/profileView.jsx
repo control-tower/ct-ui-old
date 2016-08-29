@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import profileStyle from '../../styles/components/c-profile-page.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
@@ -12,6 +13,10 @@ class ProfileView extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.generateToken();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.token !== this.state.token) {
       this.setState({ token: nextProps.login.token });
@@ -20,25 +25,24 @@ class ProfileView extends React.Component {
 
   render() {
     return (
-      <div className={layoutContentStyle['l-content']}>
+      <div className={[layoutContentStyle['l-content'], layoutContentStyle['-basic']].join(' ')}>
         <div className={profileStyle['c-profile-page']}>
           <div className={profileStyle['text-token']}>
-            lasjdn823g8egfuh43hf34hf874dnisdou
-            if948h98h98h98h948hf98h9we8hf9w8hf9w
-            e8hf9we8hf9wehf9wehf9wehf9wehf9wehf9we
-            hf9wehf9wehf9wehf9wehf9wef9wehf9
-            we8hf9wh89f8hw9f8hw9fhw9fh9wfh9w8
+            {this.state.token}
           </div>
           <hr></hr>
           <div className={profileStyle['content-buttons']}>
             <button
               type="button"
+              onClick={() => this.props.generateToken()}
               className={[buttonStyle['c-button'], buttonStyle['-basic']].join(' ')}
             >Generate token</button>
-            <button
-              type="button"
-              className={[buttonStyle['c-button'], buttonStyle['-basic']].join(' ')}
-            >Copied</button>
+            {this.state.token && <CopyToClipboard text={this.state.token} onCopy={() => this.setState({ copied: true })}>
+              <button
+                type="button"
+                className={[buttonStyle['c-button'], buttonStyle['-basic']].join(' ')}
+              >{!this.state.copied ? 'Copy' : 'Copied'}</button>
+            </CopyToClipboard>}
           </div>
         </div>
       </div>

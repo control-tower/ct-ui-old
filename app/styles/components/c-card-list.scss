@@ -1,0 +1,17 @@
+@import '../base.scss';
+
+.c-card-list {
+  min-width: 275px;
+  padding: 30px;
+  width: calc(100% / 3);
+
+  .card-title {
+    background-color: $color-1;
+    padding: 20px;
+
+    h2 {
+      color: $color-3;
+      font-family: $font-family-1;
+    }
+  }
+}

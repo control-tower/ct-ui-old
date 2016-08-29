@@ -9,7 +9,7 @@ const webpackConfig = {
   context: __dirname,
   devtool: 'inline-source-map',
   devServer: {
-    port: 3080,
+    port: 3090,
     historyApiFallback: true,
   },
   entry: [
@@ -38,7 +38,7 @@ const webpackConfig = {
       }
     },
 
-      {
+    {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           'file?hash=sha512&digest=hex&name=[hash].[ext]',
