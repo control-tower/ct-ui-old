@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import Time from 'react-time';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import tableStyle from '../../styles/components/c-table.scss';
 
 class MicroserviceView extends React.Component {
 
@@ -15,13 +17,26 @@ class MicroserviceView extends React.Component {
           <tr key={i}>
             <td>{microservice.name}</td>
             <td>{microservice.url}</td>
-            <td><span title={microservice.infoStatus.error}>{microservice.status}</span></td>
-            <td><Time value={microservice.infoStatus.lastCheck} titleFormat="YYYY/MM/DD HH:mm" relative /></td>
+            <td><span>{microservice.status}</span></td>
+            <td><time dateTime="YYYY/MM/DD HH:mm">{microservice.infoStatus.lastCheck}</time></td>
           </tr>);
       }
     }
     return (
-      <div>
+      <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <table>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Url</td>
+              <td>Status</td>
+              <td>Last check</td>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
       </div>
     );
   }

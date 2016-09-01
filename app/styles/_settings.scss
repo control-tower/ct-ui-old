@@ -2,10 +2,14 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+
 
 // Font families
 $font-family-1: 'Roboto', sans-serif;
 $font-family-2: 'Roboto Slab', serif;
+$font-family-3: 'Montserrat', sans-serif;
 
 // Layout
 $max-width: 1280px;
@@ -15,8 +19,12 @@ $wrap-desktop: 115px;
 
 
 // Font sizes
-$font-size-normal: 16px;
-$font-size-xnormal: 18px;
+$font-size-small: 12px;
+$font-size-normal: 15px;
+$font-size-xnormal: 17px;
+$font-size-xxnormal: 30px;
+$font-size-big: 40px;
+$font-size-xbig: 60px;
 
 // Font weights
 $font-weight-light: 300;
@@ -30,6 +38,7 @@ $color-3: #fff;
 $color-4: #f4f4f4;
 $color-5: #d5dee5;
 $color-6: #cdd0d7;
+$color-7: #ff4646;
 
 
 

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import sideBarStyles from '../../../styles/components/c-sidebar.scss';
-import logo from '../../../assets/logo/logoSideBar.png';
-
+import buttonStyle from '../../../styles/components/c-button.scss';
 
 class SideBar extends Component {
 
@@ -21,9 +20,7 @@ class SideBar extends Component {
     return (
       <div className={sideBarStyles['c-sidebar']}>
         <div className={sideBarStyles['sidebar-top']}>
-          <div>
-            <img src={logo} alt="logo"></img>
-          </div>
+          <h1>control<br></br>tower.</h1>
           <Link
             className={(location.pathname === '/dashboard') ?
             [sideBarStyles['sidebar-option'], sideBarStyles['sidebar-option-selected']].join(' ') :
@@ -55,7 +52,9 @@ class SideBar extends Component {
             sideBarStyles['sidebar-option']} to="profile"
           >Profile</Link>
         </div>
-        <div className={sideBarStyles['sidebar-bottom']}></div>
+        <div className={sideBarStyles['sidebar-bottom']}>
+          <button className={[buttonStyle['c-button'], buttonStyle['-blue']].join(' ')}>logout</button>
+        </div>
       </div>
     );
   }

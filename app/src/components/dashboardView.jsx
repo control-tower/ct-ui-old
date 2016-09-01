@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Treemap, AreaChart } from 'react-d3';
 import { Line } from 'react-chartjs';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import dashboardStyle from '../../styles/components/c-dashboard.scss';
 
 class DashboardView extends React.Component {
 
@@ -65,8 +67,33 @@ class DashboardView extends React.Component {
   }
 
   render() {
+    const treemapData = [{ label: 'Data1', value: 1364 },
+    { label: 'Data2', value: 1296 },
+    { label: 'Data3', value: 318 },
+    { label: 'Data4', value: 251 },
+    { label: 'Data5', value: 203 }];
     return (
-      <div>
+      <div className={layoutContentStyle['l-content']}>
+        <div className={dashboardStyle['c-dashboard']}>
+          <div className={dashboardStyle['contain-date']}>
+            <div>
+              <b>From:</b>
+              <input type="date"></input>
+            </div>
+            <div>
+              <b>To:</b>
+              <input type="date"></input>
+            </div>
+          </div>
+          <Treemap
+            data={treemapData}
+            width={450}
+            height={250}
+            textColor="#484848"
+            fontSize="12px"
+            hoverAnimation
+          />
+        </div>
       </div>
     );
   }

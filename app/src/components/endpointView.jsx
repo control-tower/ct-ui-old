@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import tableStyle from '../../styles/components/c-table.scss';
 
 
 class EndpointView extends React.Component {
@@ -16,13 +18,25 @@ class EndpointView extends React.Component {
             <td>{endpoint.path}</td>
             <td>{endpoint.method}</td>
             <td>
-              
+              {endpoint.authenticated}
             </td>
           </tr>);
       }
     }
     return (
-      <div>
+      <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <table>
+          <thead>
+            <tr>
+              <td>Path</td>
+              <td>Method</td>
+              <td>Authenticated</td>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
       </div>
     );
   }

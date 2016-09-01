@@ -1,17 +1,58 @@
 @import '../base.scss';
 
 .c-card-list {
-  min-width: 275px;
-  padding: 30px;
-  width: calc(100% / 3);
+  border: 1px solid $color-6;
+  display: inline-block;
+  flex-grow: 1;
+  margin-bottom: 20px;
+  padding: 0;
+  padding-bottom: 0;
 
   .card-title {
-    background-color: $color-1;
-    padding: 20px;
+    padding: 20px 20px 0;
 
     h2 {
-      color: $color-3;
+      color: $color-2;
       font-family: $font-family-1;
+
+      &::after {
+        background-color: $color-6;
+        content: ' ';
+        display: block;
+        height: 1px;
+        margin: 5px 0;
+        width: 100%;
+      }
+    }
+  }
+
+  .card-main {
+    padding: 20px 20px 0;
+
+    h3 {
+      font-size: $font-size-xxnormal;
+      word-break: break-word;
+    }
+  }
+
+  .card-button-contain {
+    padding-top: 20px;
+
+    button {
+      background-color: $color-3;
+      border: 0;
+      cursor: pointer;
+      outline: 0;
+      padding: 10px;
+      width: 50%;
+
+      &:first-child {
+        border-bottom: 6px solid $color-2;
+      }
+
+      &:last-child {
+        border-bottom: 6px solid $color-7;
+      }
     }
   }
 }

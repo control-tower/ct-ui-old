@@ -39,11 +39,21 @@ class PluginView extends React.Component {
     if (this.props.plugins) {
       this.props.plugins.forEach((plugin, index) => {
         plugins.push(
-          <div key={index} className={cardListStyle['c-card-list']}>
-            <div className={cardListStyle['card-title']}>
-              <h2>
-                {plugin.name}
-              </h2>
+          <div className={layoutContentStyle['card-padding']}>
+            <div key={index} className={cardListStyle['c-card-list']}>
+              <div className={cardListStyle['card-title']}>
+                <h2>
+                  {plugin.name}
+                </h2>
+              </div>
+              <div className={cardListStyle['card-main']}>
+                <h3>File/module: {plugin.mainFile}</h3>
+              </div>
+              <div className={cardListStyle['card-button-contain']}>
+                <button>Edit</button>
+                  {plugin.active && <button onClick={() => this.toggleActivePlugin(plugin, false)}>Desactivate</button>}
+                  {!plugin.active && <button onClick={() => this.toggleActivePlugin(plugin, true)}>Activate</button>}
+              </div>
             </div>
           </div>
         );

@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import tableStyle from '../../styles/components/c-table.scss'
 
 class UserView extends React.Component {
 
@@ -35,14 +37,29 @@ class UserView extends React.Component {
             <td>{user.email}</td>
             <td>{user.provider}</td>
             <td>
+              <select onChange={(e) => this.changeUser(e, user)}>
+                <option>Admin</option>
+              </select>
             </td>
           </tr>);
       }
     }
 
     return (
-      <div>
-
+      <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <table>
+          <thead>
+            <tr>
+              <td>Id</td>
+              <td>Email</td>
+              <td>Provider</td>
+              <td>Rol</td>
+            </tr>
+          </thead>
+          <tbody>
+           {rows}
+          </tbody>
+        </table>
       </div>
     );
   }

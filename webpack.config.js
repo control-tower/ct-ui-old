@@ -9,7 +9,7 @@ const webpackConfig = {
   context: __dirname,
   devtool: 'inline-source-map',
   devServer: {
-    port: 3090,
+    port: 4000,
     historyApiFallback: true,
   },
   entry: [

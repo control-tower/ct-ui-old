@@ -13,9 +13,23 @@
     padding: 15px 40px;
     position: relative;
 
-    &:active{
-      box-shadow:0 0 0 transparent;
-      top:4px;
+    &:active {
+      box-shadow: 0 0 0 transparent;
+      top: 4px;
+    }
+  }
+
+  &.-blue {
+    background-color: $color-1;
+    border: 2px solid $color-3;
+    box-shadow: 4px 4px 0 $color-3;
+    color: $color-3;
+    padding: 15px 40px;
+    position: relative;
+
+    &:active {
+      box-shadow: 0 0 0 transparent;
+      top: 4px;
     }
   }
 }
