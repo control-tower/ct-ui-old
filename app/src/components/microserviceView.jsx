@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Time from 'react-time';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import tableStyle from '../../styles/components/c-table.scss';
+import buttonStyle from '../../styles/components/c-button.scss';
 
 class MicroserviceView extends React.Component {
 
@@ -24,6 +25,11 @@ class MicroserviceView extends React.Component {
     }
     return (
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <button
+          type="button"
+          onClick={() => this.props.generateToken()}
+          className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
+        >Refres result</button>
         <table>
           <thead>
             <tr>

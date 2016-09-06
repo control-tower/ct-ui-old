@@ -41,6 +41,12 @@ class PluginView extends React.Component {
         plugins.push(
           <div className={layoutContentStyle['card-padding']}>
             <div key={index} className={cardListStyle['c-card-list']}>
+              <button
+                type="button"
+                className={cardListStyle['button-refresh']}
+              >
+              Flush cache
+              </button>
               <div className={cardListStyle['card-title']}>
                 <h2>
                   {plugin.name}

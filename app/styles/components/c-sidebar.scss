@@ -37,14 +37,14 @@
       font-family: $font-family-1;
       font-size: $font-size-xnormal;
       padding: 25px 30px;
-      transition: border-right .4s ease-in-out;
+      transition: background-color .2s ease-in-out;
 
       &:hover {
-        //border-right: 15px solid $color-3;
+        background-color: $color-8;
       }
 
       &.sidebar-option-selected {
-        //border-right: 15px solid $color-3;
+        background-color: $color-8;
       }
     }
   }

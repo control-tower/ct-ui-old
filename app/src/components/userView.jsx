@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
-import tableStyle from '../../styles/components/c-table.scss'
+import tableStyle from '../../styles/components/c-table.scss';
+import buttonStyle from '../../styles/components/c-button.scss';
 
 class UserView extends React.Component {
 
@@ -47,6 +48,11 @@ class UserView extends React.Component {
 
     return (
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <button
+          type="button"
+          onClick={() => this.props.generateToken()}
+          className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
+        >Refres result</button>
         <table>
           <thead>
             <tr>
