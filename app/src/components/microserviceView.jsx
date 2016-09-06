@@ -29,7 +29,7 @@ class MicroserviceView extends React.Component {
           type="button"
           onClick={() => this.props.generateToken()}
           className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
-        >Refres result</button>
+        >Refresh result</button>
         <table>
           <thead>
             <tr>
