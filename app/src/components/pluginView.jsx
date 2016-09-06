@@ -39,7 +39,7 @@ class PluginView extends React.Component {
     if (this.props.plugins) {
       this.props.plugins.forEach((plugin, index) => {
         plugins.push(
-          <div className={layoutContentStyle['card-padding']}>
+          <div className={layoutContentStyle['card-padding']} key={index}>
             <div key={index} className={cardListStyle['c-card-list']}>
               <button
                 type="button"
