@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import cardListStyle from '../../styles/components/c-card-list.scss';
+import modalQuestionStyle from '../../styles/components/c-modal-question.scss';
+import buttonStyle from '../../styles/components/c-button.scss';
 
 class PluginView extends React.Component {
 
@@ -67,6 +70,37 @@ class PluginView extends React.Component {
     }
     return (
       <div className={[layoutContentStyle['l-content'], layoutContentStyle['-list-card']].join(' ')}>
+        {this.state.showDialog &&
+          <div
+            onClick={() => this.cancel(this)}
+            className={modalQuestionStyle.backgroundcolor}
+          >
+            <div
+              className={classnames(modalQuestionStyle['c-modal-question'],
+              this.state.showDialog ? modalQuestionStyle['-open'] : null)}
+            >
+              <h3>
+                Sure that you want change the state of the plugin?
+                <div>
+                  <button
+                    className={classnames(buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'])}
+                    type="button"
+                    onClick={() => this.cancel(this)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className={classnames(buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'])}
+                    type="button"
+                    onClick={() => this.changeActive(this)}
+                  >
+                    Acept
+                  </button>
+                </div>
+              </h3>
+            </div>
+          </div>
+        }
         {plugins}
       </div>
     );

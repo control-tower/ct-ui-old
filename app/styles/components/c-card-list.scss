@@ -1,6 +1,7 @@
 @import '../base.scss';
 
 .c-card-list {
+  background-color: $color-3;
   border: 1px solid $color-6;
   display: inline-block;
   flex-grow: 1;
@@ -33,6 +34,11 @@
     h2 {
       color: $color-2;
       font-family: $font-family-1;
+      font-size: $font-size-xnormal;
+
+      @media #{$mq-laptop} {
+        font-size: $font-size-mediun;
+      }
 
       &::after {
         background-color: $color-6;
@@ -49,8 +55,12 @@
     padding: 20px 20px 0;
 
     h3 {
-      font-size: $font-size-xxnormal;
+      font-size: $font-size-mediun;
       word-break: break-word;
+
+      @media #{$mq-laptop} {
+        font-size: $font-size-xxnormal;
+      }
     }
   }
 

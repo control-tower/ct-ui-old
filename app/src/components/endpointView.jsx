@@ -27,7 +27,7 @@ class EndpointView extends React.Component {
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
         <button
           type="button"
-          onClick={() => this.props.generateToken()}
+          onClick={() => this.props.getEndpoints()}
           className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
         >Refresh result</button>
         <table>

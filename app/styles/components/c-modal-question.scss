@@ -1,0 +1,45 @@
+@import '../base';
+
+.c-modal-question {
+  background-color: $color-3;
+  left: 50%;
+  min-width: 600px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  h3 {
+    color: $color-2;
+    font-family: $font-family-1;
+    font-size: $font-size-xxnormal;
+    text-align: center;
+  }
+
+  div {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      font-size: $font-size-normal;
+      width: 100px;
+
+      &:first-of-type {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.backgroundcolor {
+  background-color: rgba($color-2, .95);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}

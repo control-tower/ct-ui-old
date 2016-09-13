@@ -1,9 +1,11 @@
 @import '../base.scss';
 
 .c-profile-page {
+  background-color: $color-3;
   display: block;
   margin: 0 auto;
   max-width: 700px;
+  padding: 20px;
   width: 100%;
 
   .text-token {

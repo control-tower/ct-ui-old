@@ -3,6 +3,7 @@ import { Treemap, AreaChart } from 'react-d3';
 import { Line } from 'react-chartjs';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import dashboardStyle from '../../styles/components/c-dashboard.scss';
+import buttonStyle from '../../styles/components/c-button.scss';
 
 class DashboardView extends React.Component {
 
@@ -83,6 +84,14 @@ class DashboardView extends React.Component {
             <div>
               <b>To:</b>
               <input type="date"></input>
+            </div>
+            <div className={dashboardStyle['-button-refresh']}>
+              <button
+                type="button"
+                className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
+              >
+                Refresh
+              </button>
             </div>
           </div>
           <Treemap
