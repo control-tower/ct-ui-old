@@ -40,7 +40,7 @@ class SideBar extends Component {
             className={(location.pathname === '/endpoints') ?
             [sideBarStyles['sidebar-option'], sideBarStyles['sidebar-option-selected']].join(' ') :
             sideBarStyles['sidebar-option']} to="endpoints"
-          >End points</Link>
+          >Endpoints</Link>
           <Link
             className={(location.pathname === '/users') ?
             [sideBarStyles['sidebar-option'], sideBarStyles['sidebar-option-selected']].join(' ') :
@@ -53,7 +53,7 @@ class SideBar extends Component {
           >Profile</Link>
         </div>
         <div className={sideBarStyles['sidebar-bottom']}>
-          <button className={[buttonStyle['c-button'], buttonStyle['-blue']].join(' ')}>logout</button>
+          <button className={[buttonStyle['c-button'], buttonStyle['-blue']].join(' ')} onClick={() => this.props.logout()}>logout</button>
         </div>
       </div>
     );
@@ -63,6 +63,7 @@ class SideBar extends Component {
 
 SideBar.propTypes = {
   expandSideBa: React.PropTypes.func,
+  logout: React.PropTypes.func,
 };
 
 export default SideBar;

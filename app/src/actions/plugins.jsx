@@ -24,3 +24,17 @@ export function updatePlugin(id, plugin) {
     });
   };
 }
+
+export function flushCache() {
+  return (dispatch) => {
+    fetch(`${BASE_API_URL}/cache/flush`, {
+      method: 'GET',
+    }).then((response) => {
+      if (response.ok) {
+        dispatch(showNotification('Cache Flushed!'));
+      } else {
+        dispatch(showNotification('Error Flush cache'));
+      }
+    });
+  };
+}

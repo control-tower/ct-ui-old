@@ -44,12 +44,13 @@ class PluginView extends React.Component {
         plugins.push(
           <div className={layoutContentStyle['card-padding']} key={index}>
             <div key={index} className={cardListStyle['c-card-list']}>
-              <button
+              {plugin.name === 'redisCache' && <button
                 type="button"
                 className={cardListStyle['button-refresh']}
+                onClick={() => this.props.flushCache()}
               >
               Flush cache
-              </button>
+              </button>}
               <div className={cardListStyle['card-title']}>
                 <h2>
                   {plugin.name}
@@ -111,7 +112,8 @@ class PluginView extends React.Component {
 PluginView.propTypes = {
   getPlugins: PropTypes.func,
   updatePlugin: PropTypes.func,
-  plugins: PropTypes.array
+  flushCache: PropTypes.func,
+  plugins: PropTypes.array,
 };
 
 export default PluginView;
