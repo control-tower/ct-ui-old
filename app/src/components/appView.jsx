@@ -31,7 +31,6 @@ class AppView extends React.Component {
   }
 
   render() {
-    console.log(GrowlerContainer);
     return (
       <div>
         <GrowlerContainer />
