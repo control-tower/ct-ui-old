@@ -18,7 +18,7 @@ class EndpointView extends React.Component {
             <td>{endpoint.path}</td>
             <td>{endpoint.method}</td>
             <td>
-              {endpoint.authenticated}
+              {endpoint.authenticated && 'Yes'}
             </td>
           </tr>);
       }

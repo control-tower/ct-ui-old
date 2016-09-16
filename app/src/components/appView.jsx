@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import SideBar from './sideBar/sideBar';
+import SideBar from '../containers/sideBar/sideBar';
+import { GrowlerContainer } from 'flash-notification-react-redux';
 
 class AppView extends React.Component {
 
@@ -16,7 +17,6 @@ class AppView extends React.Component {
   componentWillUpdate(nextProps) {
     if (nextProps.login.correct === false && this.props.login.correct !== nextProps.login.correct) {
       this.props.goToLogin();
-
     }
   }
 
@@ -31,8 +31,10 @@ class AppView extends React.Component {
   }
 
   render() {
+    console.log(GrowlerContainer);
     return (
       <div>
+        <GrowlerContainer />
         <SideBar />
         {this.props.children}
       </div>

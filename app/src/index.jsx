@@ -5,13 +5,15 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { browserHistory, hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
+import { GrowlerReducer } from 'flash-notification-react-redux';
 import Routes from './routes';
 import * as reducers from './reducers';
-
+import '../styles/growler.scss';
 
 const reducer = combineReducers({
   ...reducers,
   routing: routerReducer,
+  growler: GrowlerReducer,
 });
 
 

@@ -35,8 +35,8 @@ class DashboardView extends React.Component {
     if (timeByRequest) {
       for (let i = 0, length = timeByRequest.length; i < length; i++) {
         data.push({
-          label: `${timeByRequest[i]._id.endpointPath} ${timeByRequest[i]._id.sourceMethod} (${ Math.floor(timeByRequest[i].sum * 100) / 100}ms)`,
-          value: timeByRequest[i].sum,
+          label: `${timeByRequest[i]._id.endpointPath} ${timeByRequest[i]._id.sourceMethod} (${Math.floor(timeByRequest[i].sum * 100) / 100}ms)`,
+          value: timeByRequest[i].sum
         });
       }
     }
@@ -45,12 +45,14 @@ class DashboardView extends React.Component {
   }
   formatRequestByDay(requestByDay) {
     const labels = [];
-    const datasets = [{
-      data: [],
-      fillColor: 'rgba(220,220,220,0.2)',
-      pointColor: 'rgba(220,220,220,1)',
-      pointHighLigthFill: '#fff',
-    }];
+    const datasets = [
+      {
+        data: [],
+        fillColor: 'rgba(220,220,220,0.2)',
+        pointColor: 'rgba(220,220,220,1)',
+        pointHighLigthFill: '#fff'
+      }
+    ];
     if (requestByDay) {
       for (let i = 0, length = requestByDay.length; i < length; i++) {
         labels.push(`${requestByDay[i]._id.day}/${requestByDay[i]._id.month}/${requestByDay[i]._id.year}`);
@@ -58,22 +60,17 @@ class DashboardView extends React.Component {
       }
     }
 
-    return {
-      datasets,
-      labels,
-    };
+    return { datasets, labels };
   }
 
   handleChange(item, value) {
-    this.setState({ ...this.state, [item]: value });
+    this.setState({
+      ...this.state,
+      [item]: value,
+    });
   }
 
   render() {
-    const treemapData = [{ label: 'Data1', value: 1364 },
-    { label: 'Data2', value: 1296 },
-    { label: 'Data3', value: 318 },
-    { label: 'Data4', value: 251 },
-    { label: 'Data5', value: 203 }];
     return (
       <div className={layoutContentStyle['l-content']}>
         <div className={dashboardStyle['c-dashboard']}>
@@ -93,22 +90,19 @@ class DashboardView extends React.Component {
               />
             </div>
             <div className={dashboardStyle['-button-refresh']}>
-              <button
-                type="button"
-                className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
-              >
+              <button type="button" className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}>
                 Refresh
               </button>
             </div>
           </div>
-          <Treemap
-            data={treemapData}
-            width={450}
-            height={250}
-            textColor="#484848"
-            fontSize="12px"
-            hoverAnimation
-          />
+          <div className={dashboardStyle.chartPanel}>
+            <span className={dashboardStyle.chartTitle}>Average time by request</span>
+            <Treemap data={this.state.timeByRequest} width={450} height={250} textColor="#484848" fontSize="12px" hoverAnimation/>
+          </div>
+          <div className={dashboardStyle.chartPanel}>
+            <span className={dashboardStyle.chartTitle}>Num request by day</span>
+            {this.state.requestByDay && <Line data={this.state.requestByDay} width="450" height="250" />}
+          </div>
         </div>
       </div>
     );
