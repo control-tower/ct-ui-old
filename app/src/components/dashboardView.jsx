@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Treemap, AreaChart } from 'react-d3';
 import { Line } from 'react-chartjs';
+import { DatePicker } from 'react-toolbox';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import dashboardStyle from '../../styles/components/c-dashboard.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
@@ -75,12 +76,18 @@ class DashboardView extends React.Component {
         <div className={dashboardStyle['c-dashboard']}>
           <div className={dashboardStyle['contain-date']}>
             <div>
-              <b>From:</b>
-              <input type="date"></input>
+              <DatePicker
+                label="From"
+                onChange={(value) => this.handleChange('from', value)}
+                value={this.state.from}
+              />
             </div>
             <div>
-              <b>To:</b>
-              <input type="date"></input>
+              <DatePicker
+                label="To"
+                onChange={(value) => this.handleChange('to', value)}
+                value={this.state.to}
+              />
             </div>
             <div className={dashboardStyle['-button-refresh']}>
               <button type="button" className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}>

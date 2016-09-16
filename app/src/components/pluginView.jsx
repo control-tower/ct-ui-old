@@ -62,7 +62,11 @@ class PluginView extends React.Component {
               <div className={cardListStyle['card-button-contain']}>
                 <button>Edit</button>
                   {plugin.active && <button onClick={() => this.toggleActivePlugin(plugin, false)}>Desactivate</button>}
-                  {!plugin.active && <button onClick={() => this.toggleActivePlugin(plugin, true)}>Activate</button>}
+                  {!plugin.active &&
+                    <button
+                      className={cardListStyle['green-active']}
+                      onClick={() => this.toggleActivePlugin(plugin, true)}
+                    >Activate</button>}
               </div>
             </div>
           </div>
