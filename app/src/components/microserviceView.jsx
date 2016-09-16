@@ -19,7 +19,7 @@ class MicroserviceView extends React.Component {
             <td>{microservice.name}</td>
             <td>{microservice.url}</td>
             <td><span>{microservice.status}</span></td>
-            <td><time dateTime="YYYY/MM/DD HH:mm">{microservice.infoStatus.lastCheck}</time></td>
+            <td><Time value={microservice.infoStatus.lastCheck} titleFormat="YYYY/MM/DD HH:mm" relative /></td>
           </tr>);
       }
     }

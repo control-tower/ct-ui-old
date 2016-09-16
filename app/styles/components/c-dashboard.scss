@@ -1,4 +1,4 @@
-@import '../base.scss';
+@import '../base';
 
 .c-dashboard {
 
@@ -13,10 +13,15 @@
     div {
       flex-basis: calc(100% / 3);
 
+      label {
+        font-size: $font-size-normal !important;
+        padding-bottom: 20px !important;
+      }
+
       &.-button-refresh {
-          align-items: center;
-          display: flex;
-          justify-content: flex-end;
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
       }
 
       b {

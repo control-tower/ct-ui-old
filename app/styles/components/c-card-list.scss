@@ -1,4 +1,4 @@
-@import '../base.scss';
+@import '../base';
 
 .c-card-list {
   background-color: $color-3;
@@ -92,8 +92,16 @@
           border-bottom: 4px solid $color-7;
           top: 5px;
         }
-      }
 
+        &.green-active {
+          border-bottom: 8px solid $color-9;
+
+          &:active {
+            border-bottom: 4px solid $color-9;
+            top: 5px;
+          }
+        }
+      }
     }
   }
 }
