@@ -15,8 +15,8 @@ class UserView extends React.Component {
     this.props.getUsers();
   }
 
-  changeUser(value, user) {
-    this.props.updateUser(user._id, { role: value });
+  changeUser(e, user) {
+    this.props.updateUser(user._id, { role: e.target.value });
   }
 
   render() {
@@ -30,6 +30,10 @@ class UserView extends React.Component {
       },
     ];
     let rows = [];
+    let options = [
+      <option value="USER" key="1">User</option>,
+      <option value="ADMIN" key="2">Admin</option>,
+    ];
     if (this.props.users.list) {
       for (let i = 0, length = this.props.users.list.length; i < length; i++) {
         const user = this.props.users.list[i];
@@ -39,8 +43,8 @@ class UserView extends React.Component {
             <td>{user.email}</td>
             <td>{user.provider}</td>
             <td>
-              <select onChange={(e) => this.changeUser(e, user)}>
-                <option>Admin</option>
+              <select onChange={(e) => this.changeUser(e, user)} value={user.role}>
+                {options}
               </select>
             </td>
           </tr>);
