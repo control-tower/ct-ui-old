@@ -3,6 +3,7 @@ import Time from 'react-time';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import tableStyle from '../../styles/components/c-table.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
+import searchStyle from '../../styles/components/c-search.scss';
 
 class MicroserviceView extends React.Component {
 
@@ -15,7 +16,7 @@ class MicroserviceView extends React.Component {
       for (let i = 0, length = this.props.microservices.list.length; i < length; i++) {
         const microservice = this.props.microservices.list[i];
         rows.push(
-          <tr key={i}>
+          <tr key={i} className={"list-table"}>
             <td>{microservice.name}</td>
             <td>{microservice.url}</td>
             <td><span>{microservice.status}</span></td>
@@ -23,8 +24,17 @@ class MicroserviceView extends React.Component {
           </tr>);
       }
     }
+
     return (
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <div className={searchStyle['c-search']}>
+          <input
+            type="search"
+            id="jetsSearch"
+            placeholder="search micro services"
+          >
+          </input>
+        </div>
         <button
           type="button"
           onClick={() => this.props.getMicroservices()}
@@ -39,7 +49,7 @@ class MicroserviceView extends React.Component {
               <td>Last check</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="jetsContent">
             {rows}
           </tbody>
         </table>

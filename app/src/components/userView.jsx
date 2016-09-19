@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import tableStyle from '../../styles/components/c-table.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
+import searchStyle from '../../styles/components/c-search.scss';
 
 class UserView extends React.Component {
 
@@ -48,6 +49,14 @@ class UserView extends React.Component {
 
     return (
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        <div className={searchStyle['c-search']}>
+          <input
+            type="search"
+            id="jetsSearch"
+            placeholder="search micro services"
+          >
+          </input>
+        </div>
         <button
           type="button"
           onClick={() => this.props.getUsers()}

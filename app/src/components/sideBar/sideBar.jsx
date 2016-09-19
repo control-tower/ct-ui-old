@@ -53,7 +53,10 @@ class SideBar extends Component {
           >Profile</Link>
         </div>
         <div className={sideBarStyles['sidebar-bottom']}>
-          <button className={[buttonStyle['c-button'], buttonStyle['-blue']].join(' ')} onClick={() => this.props.logout()}>logout</button>
+          <button
+            className={[buttonStyle['c-button'], buttonStyle['-blue']].join(' ')}
+            onClick={() => this.props.logout()}
+          >logout</button>
         </div>
       </div>
     );

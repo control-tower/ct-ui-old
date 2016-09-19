@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Treemap, AreaChart } from 'react-d3';
 import { Line } from 'react-chartjs';
 import { DatePicker } from 'react-toolbox';
+import _ from 'lodash';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import dashboardStyle from '../../styles/components/c-dashboard.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
@@ -13,7 +14,10 @@ class DashboardView extends React.Component {
     this.state = {
       from: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)),
       to: new Date(),
+      windowWidth: window.innerWidth - 40 - 250,
     };
+
+    this.handleResize = _.debounce(this.handleResize.bind(this), 50);
   }
 
   componentWillMount() {
@@ -24,6 +28,14 @@ class DashboardView extends React.Component {
     const timeByRequest = this.formatTimeByRequest(nextProps.stadistics.timeByRequest);
     const requestByDay = this.formatRequestByDay(nextProps.stadistics.requestByDay);
     this.setState({ timeByRequest, requestByDay });
+  }
+
+  componentDidUpdate() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  handleResize() {
+    this.setState({ windowWidth: window.innerWidth - 40 - 250 });
   }
 
   filter() {
@@ -90,18 +102,35 @@ class DashboardView extends React.Component {
               />
             </div>
             <div className={dashboardStyle['-button-refresh']}>
-              <button type="button" className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}>
+              <button
+                type="button"
+                className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
+              >
                 Refresh
               </button>
             </div>
           </div>
           <div className={dashboardStyle.chartPanel}>
-            <span className={dashboardStyle.chartTitle}>Average time by request</span>
-            <Treemap data={this.state.timeByRequest} width={450} height={250} textColor="#484848" fontSize="12px" hoverAnimation/>
+            <span
+              className={[dashboardStyle.chartTitle, dashboardStyle['-first']].join(' ')}
+            >Average time by request</span>
+            <Treemap
+              data={this.state.timeByRequest}
+              width={this.state.windowWidth}
+              height={300}
+              textColor="#484848"
+              fontSize="12px"
+              hoverAnimation
+            />
           </div>
           <div className={dashboardStyle.chartPanel}>
             <span className={dashboardStyle.chartTitle}>Num request by day</span>
-            {this.state.requestByDay && <Line data={this.state.requestByDay} width="450" height="250" />}
+            {this.state.requestByDay &&
+              <Line
+                data={this.state.requestByDay}
+                width={this.state.windowWidth}
+                height={300}
+              />}
           </div>
         </div>
       </div>

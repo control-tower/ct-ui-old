@@ -45,3 +45,7 @@ h6 {
   -webkit-margin-after: 0;
   font-family: $font-family-1;
 }
+
+:global .hidden {
+  display: none;
+}
