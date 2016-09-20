@@ -43,9 +43,11 @@ class UserView extends React.Component {
             <td>{user.email}</td>
             <td>{user.provider}</td>
             <td>
-              <select onChange={(e) => this.changeUser(e, user)} value={user.role}>
-                {options}
-              </select>
+              <div className={tableStyle['content-select']}>
+                <select onChange={(e) => this.changeUser(e, user)} value={user.role}>
+                  {options}
+                </select>
+              </div>
             </td>
           </tr>);
       }
