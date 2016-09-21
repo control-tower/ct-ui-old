@@ -16,3 +16,5 @@ export const LOGIN = 'LOGIN';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const GENERATE_TOKEN = 'GENERATE_TOKEN';
 export const LOGOUT = 'LOGOUT';
+
+export const SET_VISIBLE = 'SET_VISIBLE';

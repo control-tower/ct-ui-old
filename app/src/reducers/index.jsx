@@ -4,3 +4,4 @@ export users from './users';
 export stadistics from './stadistics';
 export microservices from './microservices';
 export endpoints from './endpoints';
+export loading from './loading';

@@ -7,14 +7,50 @@ import searchStyle from '../../styles/components/c-search.scss';
 
 class MicroserviceView extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      microservices: null,
+      filteredList: null,
+      filterValue: null,
+    };
+  }
   componentDidMount() {
     this.props.getMicroservices();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.microservices !== this.props.microservices) {
+      const newState = { microservices: nextProps.microservices.list };
+      if (this.state.filterValue) {
+        newState.filteredList = this.filterList(nextProps.microservices.list, this.state.filterValue);
+      } else {
+        newState.filteredList = nextProps.microservices.list;
+      }
+      this.setState(newState);
+    }
+  }
+
+  filterList(list, value) {
+    return list.filter((microservice) => microservice.name.toLowerCase().indexOf(value) >= 0);
+  }
+
+  filter(e) {
+    const newState = { filterValue: e.target.value };
+    if (e.target.value) {
+      newState.filteredList = this.filterList(this.props.microservices.list, e.target.value);
+    } else {
+      newState.filteredList = this.props.microservices.list;
+    }
+    this.setState(newState);
+  }
+
   render() {
     let rows = [];
-    if (this.props.microservices.list) {
-      for (let i = 0, length = this.props.microservices.list.length; i < length; i++) {
-        const microservice = this.props.microservices.list[i];
+    if (this.state.filteredList) {
+      for (let i = 0, length = this.state.filteredList.length; i < length; i++) {
+        const microservice = this.state.filteredList[i];
         rows.push(
           <tr key={i} className={"list-table"}>
             <td>{microservice.name}</td>
@@ -31,7 +67,9 @@ class MicroserviceView extends React.Component {
           <input
             type="search"
             id="jetsSearch"
+            value={this.state.filterValue || ''}
             placeholder="search micro services"
+            onChange={(e) => this.filter(e)}
           >
           </input>
         </div>

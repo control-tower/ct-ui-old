@@ -8,11 +8,41 @@ class UserView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      users: null,
+      filteredList: null,
+      filterValue: null,
+    };
   }
 
   componentDidMount() {
     this.props.getUsers();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.users !== this.props.users) {
+      const newState = { users: nextProps.users.list };
+      if (this.state.filterValue) {
+        newState.filteredList = this.filterList(nextProps.users.list, this.state.filterValue);
+      } else {
+        newState.filteredList = nextProps.users.list;
+      }
+      this.setState(newState);
+    }
+  }
+
+  filterList(list, value) {
+    return list.filter((user) => user.email.toLowerCase().indexOf(value) >= 0);
+  }
+
+  filter(e) {
+    const newState = { filterValue: e.target.value };
+    if (e.target.value) {
+      newState.filteredList = this.filterList(this.props.users.list, e.target.value);
+    } else {
+      newState.filteredList = this.props.users.list;
+    }
+    this.setState(newState);
   }
 
   changeUser(e, user) {
@@ -34,9 +64,9 @@ class UserView extends React.Component {
       <option value="USER" key="1">User</option>,
       <option value="ADMIN" key="2">Admin</option>,
     ];
-    if (this.props.users.list) {
-      for (let i = 0, length = this.props.users.list.length; i < length; i++) {
-        const user = this.props.users.list[i];
+    if (this.state.filteredList) {
+      for (let i = 0, length = this.state.filteredList.length; i < length; i++) {
+        const user = this.state.filteredList[i];
         rows.push(
           <tr key={i}>
             <td>{user._id}</td>
@@ -59,7 +89,9 @@ class UserView extends React.Component {
           <input
             type="search"
             id="jetsSearch"
+            value={this.state.filterValue || ''}
             placeholder="search micro services"
+            onChange={(e) => this.filter(e)}
           >
           </input>
         </div>

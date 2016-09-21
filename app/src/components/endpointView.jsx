@@ -6,14 +6,51 @@ import searchStyle from '../../styles/components/c-search.scss';
 
 class EndpointView extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      endpoints: null,
+      filteredList: null,
+      filterValue: null,
+    };
+  }
+
   componentDidMount() {
     this.props.getEndpoints();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.endpoints !== this.props.endpoints) {
+      const newState = { endpoints: nextProps.endpoints.list };
+      if (this.state.filterValue) {
+        newState.filteredList = this.filterList(nextProps.endpoints.list, this.state.filterValue);
+      } else {
+        newState.filteredList = nextProps.endpoints.list;
+      }
+      this.setState(newState);
+    }
+  }
+
+  filterList(list, value) {
+    return list.filter((endpoint) => endpoint.path.toLowerCase().indexOf(value) >= 0);
+  }
+
+  filter(e) {
+    const newState = { filterValue: e.target.value };
+    if (e.target.value) {
+      newState.filteredList = this.filterList(this.props.endpoints.list, e.target.value);
+    } else {
+      newState.filteredList = this.props.endpoints.list;
+    }
+    this.setState(newState);
+  }
+
   render() {
     let rows = [];
-    if (this.props.endpoints.list) {
-      for (let i = 0, length = this.props.endpoints.list.length; i < length; i++) {
-        const endpoint = this.props.endpoints.list[i];
+    if (this.state.filteredList) {
+      for (let i = 0, length = this.state.filteredList.length; i < length; i++) {
+        const endpoint = this.state.filteredList[i];
         rows.push(
           <tr key={i}>
             <td>{endpoint.path}</td>
@@ -30,7 +67,9 @@ class EndpointView extends React.Component {
           <input
             type="search"
             id="jetsSearch"
-            placeholder="search micro services"
+            value={this.state.filterValue || ''}
+            placeholder="Search endpoints"
+            onChange={(e) => this.filter(e)}
           >
           </input>
         </div>

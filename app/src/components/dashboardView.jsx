@@ -105,6 +105,7 @@ class DashboardView extends React.Component {
               <button
                 type="button"
                 className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
+                onClick={() => this.filter()}
               >
                 Refresh
               </button>
