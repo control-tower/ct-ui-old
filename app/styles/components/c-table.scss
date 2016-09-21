@@ -40,6 +40,11 @@
 
   tbody {
     tr {
+
+      &.-error {
+        background-color: rgba($color-7, .2);
+      }
+
       td {
         font-family: $font-family-2;
         font-size: $font-size-xnormal;

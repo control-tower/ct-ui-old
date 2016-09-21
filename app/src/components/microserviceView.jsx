@@ -52,7 +52,10 @@ class MicroserviceView extends React.Component {
       for (let i = 0, length = this.state.filteredList.length; i < length; i++) {
         const microservice = this.state.filteredList[i];
         rows.push(
-          <tr key={i} className={"list-table"}>
+          <tr
+            key={i}
+            className={['list-table', microservice.status === 'error' ? tableStyle['-error'] : null].join(' ')}
+          >
             <td>{microservice.name}</td>
             <td>{microservice.url}</td>
             <td><span>{microservice.status}</span></td>

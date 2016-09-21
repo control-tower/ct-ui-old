@@ -1,0 +1,156 @@
+@import './base';
+@import 'datepicker/colors';
+@import 'datepicker/globals';
+@import 'datepicker/mixins';
+@import 'datepicker/config';
+
+:global .input:not(.disabled) > .inputElement {
+  cursor: pointer;
+}
+
+:global .header {
+  padding: 15 * $unit 5 * $unit;
+  color: $datepicker-primary-contrast-color;
+  cursor: pointer;
+  background-color: $datepicker-primary-color;
+}
+
+:global .year {
+  display: inline-block;
+  font-size: $datepicker-year-font-size;
+  transition: opacity, font-size $animation-duration $animation-curve-default;
+}
+
+:global .date {
+  display: block;
+  font-weight: $font-weight-semi-bold;
+  text-transform: capitalize;
+  transition: opacity $animation-duration $animation-curve-default;
+}
+
+:global .calendarWrapper {
+  padding: $unit .5 * $unit 0;
+}
+
+:global .yearsDisplay {
+  .date {
+    opacity: $datepicker-inactive-opacity;
+  }
+  .year {
+    font-size: $font-size-normal;
+  }
+}
+
+:global .monthsDisplay {
+  .year {
+    opacity: $datepicker-inactive-opacity;
+  }
+}
+
+:global .dialog {
+  width: $datepicker-dialog-width;
+  > [role="body"] {
+    padding: 0;
+  }
+  > [role="navigation"] > .button {
+    color: $datepicker-primary-color;
+    &:hover {
+      background: $datepicker-primary-hover-color;
+    }
+    &:focus:not(:active) {
+      background: $datepicker-primary-hover-color;
+    }
+  }
+}
+
+:global .calendar {
+  position: relative;
+  height: $calendar-total-height;
+  overflow: hidden;
+  font-size: $font-size-small;
+  line-height: $calendar-row-height;
+  text-align: center;
+  background: $calendar-primary-contrast-color;
+  .prev, .next {
+    position: absolute;
+    top: 0;
+    z-index: $z-index-high;
+    height: 3.6 * $unit;
+    cursor: pointer;
+    opacity: .7;
+  }
+  .prev {
+    left: 0;
+  }
+  .next {
+    right: 0;
+  }
+}
+
+:global .title {
+  display: inline-block;
+  font-weight: 500;
+  line-height: $calendar-row-height;
+}
+
+:global .years {
+  height: 100%;
+  overflow-y: auto;
+  font-size: $font-size-big;
+  > li {
+    line-height: 2.4;
+    cursor: pointer;
+    &.active {
+      font-size: $calendar-year-font-size;
+      color: $calendar-primary-color;
+    }
+  }
+}
+
+:global .week {
+  display: flex;
+  height: $calendar-row-height;
+  flex-wrap: wrap;
+  font-size: $calendar-day-font-size;
+  line-height: $calendar-row-height;
+  opacity: .5;
+  > span {
+    flex: 0 0 (100% / 7);
+  }
+}
+
+:global .days {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: $calendar-day-font-size;
+}
+
+:global .day {
+  flex: 0 0 (100% / 7);
+  padding: $calendar-day-padding-topbottom $calendar-day-padding-leftright;
+  > span {
+    display: inline-block;
+    width: $calendar-row-height;
+    height: $calendar-row-height;
+    line-height: $calendar-row-height;
+    border-radius: 50%;
+  }
+  &:hover:not(.active):not(.disabled) > span {
+    color: $calendar-primary-contrast-color;
+    background: $calendar-primary-hover-color;
+  }
+  &.active > span {
+    color: $calendar-primary-contrast-color;
+    background: $calendar-primary-color;
+  }
+  &:hover:not(.disabled) > span {
+    cursor: pointer;
+  }
+  &.disabled {
+    opacity: $calendar-day-disable-opacity;
+  }
+}
+
+:global .month {
+  background-color: $calendar-primary-contrast-color;
+}

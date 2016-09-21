@@ -25,8 +25,17 @@
       flex-basis: calc(100% / 3);
 
       label {
+        font-family: $font-family-2;
         font-size: $font-size-normal !important;
         padding-bottom: 20px !important;
+
+        &::after {
+          background-color: $color-2;
+          content: ' ';
+          display: block;
+          height: 2px;
+          width: 80px;
+        }
       }
 
       &.-button-refresh {
