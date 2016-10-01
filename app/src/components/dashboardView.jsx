@@ -15,6 +15,7 @@ class DashboardView extends React.Component {
       from: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)),
       to: new Date(),
       windowWidth: window.innerWidth - 40 - 250,
+      optionselect: 1,
     };
 
     this.handleResize = _.debounce(this.handleResize.bind(this), 50);
@@ -40,6 +41,10 @@ class DashboardView extends React.Component {
 
   filter() {
     this.props.getStadistics(this.state.from, this.state.to);
+  }
+
+  changeOption(value) {
+    this.setState({ optionselect: value });
   }
 
   formatTimeByRequest(timeByRequest) {
@@ -86,6 +91,23 @@ class DashboardView extends React.Component {
     return (
       <div className={layoutContentStyle['l-content']}>
         <div className={dashboardStyle['c-dashboard']}>
+          <div className={dashboardStyle['contain-options']}>
+            <button
+              type="button"
+              className={(this.state.optionselect == 1) ? dashboardStyle['-select'] : null}
+              onClick={() => this.changeOption(1)}
+            >
+              Tables
+            </button>
+            <button
+              type="button"
+              onClick={() => this.changeOption(2)}
+              className={(this.state.optionselect == 2) ? dashboardStyle['-select'] : null}
+            >
+              Numbers
+            </button>
+          </div>
+          {this.state.optionselect == 1 && <div>
           <div className={dashboardStyle['contain-date']}>
             <div>
               <DatePicker
@@ -133,6 +155,11 @@ class DashboardView extends React.Component {
                 height={300}
               />}
           </div>
+        </div>}
+        <div>
+
+
+        </div>
         </div>
       </div>
     );
