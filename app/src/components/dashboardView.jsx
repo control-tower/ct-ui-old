@@ -7,6 +7,8 @@ import layoutContentStyle from '../../styles/layout/l-content.scss';
 import dashboardStyle from '../../styles/components/c-dashboard.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
 
+import usaSvg from '../../assets/maps/usa.svg';
+
 class DashboardView extends React.Component {
 
   constructor(props) {
@@ -166,12 +168,17 @@ class DashboardView extends React.Component {
             <div><h2>250</h2><p>requests today</p></div>
             <div><h2>1750</h2><p>requests last wekk</p></div>
           </div>
+          <hr></hr>
+          <div className={dashboardStyle['countries-list']}>
+            <div>
+              <img src={usaSvg}></img>
+            </div>
+          </div>
         </div>}
         </div>
       </div>
     );
   }
-
 }
 
 DashboardView.propTypes = {

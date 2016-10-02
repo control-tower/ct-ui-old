@@ -2,6 +2,11 @@
 
 .c-dashboard {
 
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   .three-numbers {
     display: flex;
     justify-content: space-between;
@@ -60,6 +65,21 @@
     p {
       color: $color-2;
       font-family: $font-family-2;
+    }
+  }
+
+  .countries-list {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      background-color: $color-3;
+      flex-basis: 45%;
+      padding: 20px;
+
+      img {
+        
+      }
     }
   }
 
