@@ -156,10 +156,17 @@ class DashboardView extends React.Component {
               />}
           </div>
         </div>}
-        <div>
-
-
-        </div>
+        {this.state.optionselect == 2 && <div className={dashboardStyle['']}>
+          <div className={dashboardStyle['three-numbers']}>
+            <div><h2>398</h2><p>Users</p></div>
+            <div><h2>402</h2><p>Microservices</p></div>
+            <div><h2>200</h2><p>Endpoints</p></div>
+          </div>
+          <div className={dashboardStyle['two-numbers']}>
+            <div><h2>250</h2><p>requests today</p></div>
+            <div><h2>1750</h2><p>requests last wekk</p></div>
+          </div>
+        </div>}
         </div>
       </div>
     );
