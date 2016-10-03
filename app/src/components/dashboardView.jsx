@@ -108,7 +108,9 @@ class DashboardView extends React.Component {
         }
         const country = this.props.stadistics.countRequestTodayByCountry[i];
         if (country && country._id) {
-          countries.push(<div  key={i}><span className={`mg mg-4x map-${country._id.toLowerCase()}`}></span>{country.count}</div>);
+          countries.push(<div className={dashboardStyle['contain-map']}  key={i}><div>
+          <span className={`mg huge map-${country._id.toLowerCase()}`}></span>
+          <span className={dashboardStyle['text-country']}>{country.count}</span></div></div>);
         }
       }
     }
@@ -118,17 +120,17 @@ class DashboardView extends React.Component {
           <div className={dashboardStyle['contain-options']}>
             <button
               type="button"
-              className={(this.state.optionselect == 1) ? dashboardStyle['-select'] : null}
-              onClick={() => this.changeOption(1)}
+              className={(this.state.optionselect == 2) ? dashboardStyle['-select'] : null}
+              onClick={() => this.changeOption(2)}
             >
-              Tables
+              Numbers
             </button>
             <button
               type="button"
-              onClick={() => this.changeOption(2)}
-              className={(this.state.optionselect === 2) ? dashboardStyle['-select'] : null}
+              onClick={() => this.changeOption(1)}
+              className={(this.state.optionselect === 1) ? dashboardStyle['-select'] : null}
             >
-              Numbers
+              Tables
             </button>
           </div>
           {this.state.optionselect === 1 && <div>

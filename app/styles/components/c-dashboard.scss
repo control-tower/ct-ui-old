@@ -69,16 +69,28 @@
   }
 
   .countries-list {
-    display: flex;
-    justify-content: space-between;
 
-    div {
-      background-color: $color-3;
-      flex-basis: 45%;
+    .contain-map{
       padding: 20px;
+      float: left;
+      width: 50%;
 
-      img {
-        
+      &:nth-child(2n+1) {
+        padding-left: 0;
+      }
+      
+      &:nth-child(2n) {
+        padding-right: 0;
+      }
+
+      div {
+        background-color: $color-3;
+        padding: 20px;
+      }
+
+      .text-country {
+        font-family: $font-family-2;
+        font-size: $font-size-big;
       }
     }
   }

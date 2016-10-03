@@ -43,6 +43,19 @@
 :global .mg-6x {
   font-size: 8em;
 }
+:global .huge {
+  font-size: 120px;
+
+	&::after {
+		background-color: #3c61e5;
+		content: '';
+		display: inline-block;
+		height: 50px;
+		margin-left: 10px;
+		margin-right: 20px;
+		width: 4px;
+	}
+}
 
 /*Maps*/
 :global .map-sh-tc:before {
