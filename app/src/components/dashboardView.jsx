@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Treemap, AreaChart } from 'react-d3';
 import { Line } from 'react-chartjs';
 import { DatePicker } from 'react-toolbox';
+import numeral from 'numeral';
 import _ from 'lodash';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import dashboardStyle from '../../styles/components/c-dashboard.scss';
@@ -110,7 +111,7 @@ class DashboardView extends React.Component {
         if (country && country._id) {
           countries.push(<div className={dashboardStyle['contain-map']}  key={i}><div>
           <span className={`mg huge map-${country._id.toLowerCase()}`}></span>
-          <span className={dashboardStyle['text-country']}><b>{country._id}</b><br></br>{country.count}</span></div></div>);
+          <span className={dashboardStyle['text-country']}><b>{country._id}</b><br></br>{numeral(country.count).format('0 a')}</span></div></div>);
         }
       }
     }
