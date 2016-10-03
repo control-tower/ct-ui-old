@@ -16,6 +16,10 @@ function orderRequestByDay(r1, r2) {
   return r1d - r2d;
 }
 
+function orderRequestByNum(r1, r2) {
+  return r2.count - r1.count;
+}
+
 
 export function getStadistics(fromDate, toDate) {
   return (dispatch) => {
@@ -26,12 +30,18 @@ export function getStadistics(fromDate, toDate) {
     const promises = [];
     promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/avgByRequest?from=${from}&to=${to}`, { method: 'GET' }).then((response) => response.json()));
     promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/requestByDay?from=${from}&to=${to}`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/countRequestToday`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/countRequestLastWeek`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/countRequestTodayByCountry`, { method: 'GET' }).then((response) => response.json()));
 
     Promise.all(promises).then((data) => {
       dispatch(showNotification('Stadistics obtained successfully'));
       dispatch({ type: GET_STADISTICS, payload: {
         timeByRequest: data[0],
         requestByDay: data[1].sort(orderRequestByDay),
+        countRequestToday: data[2],
+        countRequestLastWeek: data[3],
+        countRequestTodayByCountry: data[4].sort(orderRequestByNum),
       } });
       dispatch(showLoading(false));
     }, () => {

@@ -9,6 +9,7 @@ import { GrowlerReducer } from 'flash-notification-react-redux';
 import Routes from './routes';
 import * as reducers from './reducers';
 import '../styles/growler.scss';
+import '../styles/mapglyphs.scss';
 
 const reducer = combineReducers({
   ...reducers,

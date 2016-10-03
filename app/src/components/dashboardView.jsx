@@ -17,7 +17,7 @@ class DashboardView extends React.Component {
       from: new Date(Date.now() - (7 * 24 * 60 * 60 * 1000)),
       to: new Date(),
       windowWidth: window.innerWidth - 40 - 250,
-      optionselect: 1,
+      optionselect: 2,
     };
 
     this.handleResize = _.debounce(this.handleResize.bind(this), 50);
@@ -25,6 +25,9 @@ class DashboardView extends React.Component {
 
   componentWillMount() {
     this.props.getStadistics(this.state.from, this.state.to);
+    this.props.getMicroservice();
+    this.props.getUsers();
+    this.props.getEndpoints();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -90,6 +93,20 @@ class DashboardView extends React.Component {
   }
 
   render() {
+    const countries = [];
+    if (this.props.stadistics.countRequestTodayByCountry) {
+      const length = this.props.stadistics.countRequestTodayByCountry.length;
+
+      for (let i = 0; i < length; i++) {
+        if (countries.length >= 4) {
+          break;
+        }
+        const country = this.props.stadistics.countRequestTodayByCountry[i];
+        if (country && country._id) {
+          countries.push(<div  key={i}><span className={`mg mg-4x map-${country._id.toLowerCase()}`}></span>{country.count}</div>);
+        }
+      }
+    }
     return (
       <div className={layoutContentStyle['l-content']}>
         <div className={dashboardStyle['c-dashboard']}>
@@ -104,86 +121,91 @@ class DashboardView extends React.Component {
             <button
               type="button"
               onClick={() => this.changeOption(2)}
-              className={(this.state.optionselect == 2) ? dashboardStyle['-select'] : null}
+              className={(this.state.optionselect === 2) ? dashboardStyle['-select'] : null}
             >
               Numbers
             </button>
           </div>
-          {this.state.optionselect == 1 && <div>
-          <div className={dashboardStyle['contain-date']}>
-            <div>
-              <DatePicker
-                label="From"
-                onChange={(value) => this.handleChange('from', value)}
-                value={this.state.from}
-              />
+          {this.state.optionselect === 1 && <div>
+            <div className={dashboardStyle['contain-date']}>
+              <div>
+                <DatePicker
+                  label="From"
+                  onChange={(value) => this.handleChange('from', value)}
+                  value={this.state.from}
+                />
+              </div>
+              <div>
+                <DatePicker
+                  label="To"
+                  onChange={(value) => this.handleChange('to', value)}
+                  value={this.state.to}
+                />
+              </div>
+              <div className={dashboardStyle['-button-refresh']}>
+                <button
+                  type="button"
+                  className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
+                  onClick={() => this.filter()}
+                >
+                  Refresh
+                </button>
+              </div>
             </div>
-            <div>
-              <DatePicker
-                label="To"
-                onChange={(value) => this.handleChange('to', value)}
-                value={this.state.to}
-              />
-            </div>
-            <div className={dashboardStyle['-button-refresh']}>
-              <button
-                type="button"
-                className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
-                onClick={() => this.filter()}
-              >
-                Refresh
-              </button>
-            </div>
-          </div>
-          <div className={dashboardStyle.chartPanel}>
-            <span
-              className={[dashboardStyle.chartTitle, dashboardStyle['-first']].join(' ')}
-            >Average time by request</span>
-            <Treemap
-              data={this.state.timeByRequest}
-              width={this.state.windowWidth}
-              height={300}
-              textColor="#484848"
-              fontSize="12px"
-              hoverAnimation
-            />
-          </div>
-          <div className={dashboardStyle.chartPanel}>
-            <span className={dashboardStyle.chartTitle}>Num request by day</span>
-            {this.state.requestByDay &&
-              <Line
-                data={this.state.requestByDay}
+            <div className={dashboardStyle.chartPanel}>
+              <span
+                className={[dashboardStyle.chartTitle, dashboardStyle['-first']].join(' ')}
+              >Average time by request</span>
+              <Treemap
+                data={this.state.timeByRequest}
                 width={this.state.windowWidth}
                 height={300}
-              />}
-          </div>
-        </div>}
-        {this.state.optionselect == 2 && <div className={dashboardStyle['']}>
+                textColor="#484848"
+                fontSize="12px"
+                hoverAnimation
+              />
+            </div>
+            <div className={dashboardStyle.chartPanel}>
+              <span className={dashboardStyle.chartTitle}>Num request by day</span>
+              {this.state.requestByDay &&
+                <Line
+                  data={this.state.requestByDay}
+                  width={this.state.windowWidth}
+                  height={300}
+                />}
+            </div>
+          </div>}
+        {this.state.optionselect === 2 && <div className={dashboardStyle['']}>
           <div className={dashboardStyle['three-numbers']}>
-            <div><h2>398</h2><p>Users</p></div>
-            <div><h2>402</h2><p>Microservices</p></div>
-            <div><h2>200</h2><p>Endpoints</p></div>
+            <div><h2>{this.props.users.list ? this.props.users.list.length : 0}</h2><p>Users</p></div>
+            <div><h2>{this.props.microservices.list ? this.props.microservices.list.length: 0}</h2><p>Microservices</p></div>
+            <div><h2>{this.props.endpoints.list ? this.props.endpoints.list.length : 0}</h2><p>Endpoints</p></div>
           </div>
           <div className={dashboardStyle['two-numbers']}>
-            <div><h2>250</h2><p>requests today</p></div>
-            <div><h2>1750</h2><p>requests last wekk</p></div>
+            <div><h2>{this.props.stadistics.countRequestToday ? this.props.stadistics.countRequestToday.count : 0}</h2><p>Requests today</p></div>
+            <div><h2>{this.props.stadistics.countRequestLastWeek ? this.props.stadistics.countRequestLastWeek.count : 0}</h2><p>Requests last week</p></div>
           </div>
           <hr></hr>
           <div className={dashboardStyle['countries-list']}>
-            <div>
-              <img src={usaSvg}></img>
-            </div>
+            {countries}
           </div>
         </div>}
         </div>
       </div>
     );
   }
+
 }
 
 DashboardView.propTypes = {
   getStadistics: PropTypes.func,
+  getMicroservice: PropTypes.func,
+  getUsers: PropTypes.func,
+  getEndpoints: PropTypes.func,
   stadistics: PropTypes.object,
+  users: PropTypes.object,
+  endpoints: PropTypes.object,
+  microservices: PropTypes.object,
 };
 
 export default DashboardView;
