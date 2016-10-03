@@ -20,6 +20,10 @@ function orderRequestByNum(r1, r2) {
   return r2.count - r1.count;
 }
 
+function orderRequestBySum(r1, r2) {
+  return r2.sum - r1.sum;
+}
+
 
 export function getStadistics(fromDate, toDate) {
   return (dispatch) => {
@@ -37,7 +41,7 @@ export function getStadistics(fromDate, toDate) {
     Promise.all(promises).then((data) => {
       dispatch(showNotification('Stadistics obtained successfully'));
       dispatch({ type: GET_STADISTICS, payload: {
-        timeByRequest: data[0],
+        timeByRequest: data[0].sort(orderRequestBySum),
         requestByDay: data[1].sort(orderRequestByDay),
         countRequestToday: data[2],
         countRequestLastWeek: data[3],

@@ -56,15 +56,20 @@ class DashboardView extends React.Component {
     const data = [];
     if (timeByRequest) {
       for (let i = 0, length = timeByRequest.length; i < length; i++) {
+        if (data && data.length >= 10) {
+          break;
+        }
         data.push({
           label: `${timeByRequest[i]._id.endpointPath} ${timeByRequest[i]._id.sourceMethod} (${Math.floor(timeByRequest[i].sum * 100) / 100}ms)`,
           value: timeByRequest[i].sum
         });
+
       }
     }
 
     return data;
   }
+
   formatRequestByDay(requestByDay) {
     const labels = [];
     const datasets = [
