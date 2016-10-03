@@ -110,7 +110,7 @@ class DashboardView extends React.Component {
         if (country && country._id) {
           countries.push(<div className={dashboardStyle['contain-map']}  key={i}><div>
           <span className={`mg huge map-${country._id.toLowerCase()}`}></span>
-          <span className={dashboardStyle['text-country']}>{country.count}</span></div></div>);
+          <span className={dashboardStyle['text-country']}><b>{country._id}</b><br></br>{country.count}</span></div></div>);
         }
       }
     }

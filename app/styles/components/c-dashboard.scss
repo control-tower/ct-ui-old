@@ -78,7 +78,7 @@
       &:nth-child(2n+1) {
         padding-left: 0;
       }
-      
+
       &:nth-child(2n) {
         padding-right: 0;
       }
@@ -86,11 +86,18 @@
       div {
         background-color: $color-3;
         padding: 20px;
+        position: relative;
       }
 
       .text-country {
+        bottom: 22px;
         font-family: $font-family-2;
         font-size: $font-size-big;
+        position: absolute;
+
+        b {
+          font-size: $font-size-xxnormal;
+        }
       }
     }
   }
