@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 import layoutContentStyle from '../../styles/layout/l-content.scss';
 import tableStyle from '../../styles/components/c-table.scss';
 import buttonStyle from '../../styles/components/c-button.scss';
 import searchStyle from '../../styles/components/c-search.scss';
+import modalQuestionStyle from '../../styles/components/c-modal-question.scss';
 
 class UserView extends React.Component {
 
@@ -12,6 +14,7 @@ class UserView extends React.Component {
       users: null,
       filteredList: null,
       filterValue: null,
+      showDialog: false,
     };
   }
 
@@ -47,6 +50,14 @@ class UserView extends React.Component {
 
   changeUser(e, user) {
     this.props.updateUser(user._id, { role: e.target.value });
+  }
+
+  showDialog() {
+    this.setState({showDialog: true });
+  }
+
+  closeDialog() {
+    this.setState({showDialog: false });
   }
 
   render() {
@@ -85,6 +96,49 @@ class UserView extends React.Component {
 
     return (
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
+        {this.state.showDialog &&
+          <div
+            onClick={() => this.closeDialog()}
+            className={modalQuestionStyle.backgroundcolor}
+          >
+            <div
+              className={classnames(modalQuestionStyle['c-modal-question'],
+              this.state.showDialog ? modalQuestionStyle['-open'] : null)}
+            >
+              <h3>
+                Create new user
+              </h3>
+              <form>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className={classnames(modalQuestionStyle['input-dialog'])}
+                ></input>
+                <input
+                  type="text"
+                  placeholder="User Name"
+                  className={classnames(modalQuestionStyle['input-dialog'])}
+                ></input>
+              </form>
+              <div>
+                <button
+                  className={classnames(buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'])}
+                  type="button"
+                  onClick={() => this.closeDialog()}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={classnames(buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'])}
+                  type="button"
+                  onClick={() => this.changeActive(this)}
+                >
+                  Create
+                </button>
+              </div>
+            </div>
+          </div>
+        }
         <div className={searchStyle['c-search']}>
           <input
             type="search"
@@ -100,6 +154,11 @@ class UserView extends React.Component {
           onClick={() => this.props.getUsers()}
           className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table']].join(' ')}
         >Refresh result</button>
+        <button
+          type="button"
+          onClick={() => this.showDialog()}
+          className={[buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'], buttonStyle['-distance-right']].join(' ')}
+        >New user</button>
         <table>
           <thead>
             <tr>
