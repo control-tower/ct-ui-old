@@ -1,5 +1,6 @@
-import { BASE_API_URL, GET_STADISTICS, GET_TIME_BY_REQUEST_STADISTICS } from '../constants';
+import { BASE_API_URL, GET_STADISTICS } from '../constants';
 import { showNotification } from './notification';
+import { showLoading } from './loading';
 import fetch from '../utils/fetch';
 
 function formatDate(date) {
@@ -15,23 +16,42 @@ function orderRequestByDay(r1, r2) {
   return r1d - r2d;
 }
 
+function orderRequestByNum(r1, r2) {
+  return r2.count - r1.count;
+}
+
+function orderRequestBySum(r1, r2) {
+  return r2.sum - r1.sum;
+}
+
 
 export function getStadistics(fromDate, toDate) {
   return (dispatch) => {
+    dispatch(showLoading(true));
     const from = formatDate(fromDate);
     const to = formatDate(toDate);
 
     const promises = [];
-    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/timeByRequest?from=${from}&to=${to}`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/avgByRequest?from=${from}&to=${to}`, { method: 'GET' }).then((response) => response.json()));
     promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/requestByDay?from=${from}&to=${to}`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/countRequestToday`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/countRequestLastWeek`, { method: 'GET' }).then((response) => response.json()));
+    promises.push(fetch(`${BASE_API_URL}/api/v1/stadistic/countRequestTodayByCountry`, { method: 'GET' }).then((response) => response.json()));
 
     Promise.all(promises).then((data) => {
       dispatch(showNotification('Stadistics obtained successfully'));
       dispatch({ type: GET_STADISTICS, payload: {
-        timeByRequest: data[0],
+        timeByRequest: data[0].sort(orderRequestBySum),
         requestByDay: data[1].sort(orderRequestByDay),
+        countRequestToday: data[2],
+        countRequestLastWeek: data[3],
+        countRequestTodayByCountry: data[4].sort(orderRequestByNum),
       } });
-    }, () => dispatch(showNotification('Error obtaining stadistics')));
+      dispatch(showLoading(false));
+    }, () => {
+      dispatch(showNotification('Error obtaining stadistics'));
+      dispatch(showLoading(false));
+    });
 
   };
 }

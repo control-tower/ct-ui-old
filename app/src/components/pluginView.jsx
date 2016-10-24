@@ -1,15 +1,9 @@
 import React, { PropTypes } from 'react';
-import {
-  Card,
-  CardTitle,
-  CardText,
-  CardActions,
-  Button,
-  FontIcon,
-  Dialog,
-} from 'react-toolbox';
-import pluginStyle from '../../styles/plugin';
-import generalStyle from '../../styles/general';
+import classnames from 'classnames';
+import layoutContentStyle from '../../styles/layout/l-content.scss';
+import cardListStyle from '../../styles/components/c-card-list.scss';
+import modalQuestionStyle from '../../styles/components/c-modal-question.scss';
+import buttonStyle from '../../styles/components/c-button.scss';
 
 class PluginView extends React.Component {
 
@@ -48,38 +42,71 @@ class PluginView extends React.Component {
     if (this.props.plugins) {
       this.props.plugins.forEach((plugin, index) => {
         plugins.push(
-          <Card
-            key={index}
-            raised
-            className={pluginStyle.card}
-          >
-            <CardTitle title={plugin.name} />
-            <CardText>File/module: {plugin.mainFile}</CardText>
-            <CardActions>
-              <Button label="Edit" />
-              {plugin.active && <Button label="Deactivate" icon="clear" className={pluginStyle.deactivate} onClick={() => this.toggleActivePlugin(plugin, false)} />}
-              {!plugin.active && <Button label="Activate" icon="done" className={pluginStyle.activate} onClick={() => this.toggleActivePlugin(plugin, true)} />}
-            </CardActions>
-          </Card>
+          <div className={layoutContentStyle['card-padding']} key={index}>
+            <div key={index} className={cardListStyle['c-card-list']}>
+              {plugin.name === 'redisCache' && <button
+                type="button"
+                className={cardListStyle['button-refresh']}
+                onClick={() => this.props.flushCache()}
+              >
+              Flush cache
+              </button>}
+              <div className={cardListStyle['card-title']}>
+                <h2>
+                  {plugin.name}
+                </h2>
+              </div>
+              <div className={cardListStyle['card-main']}>
+                <h3>File/module: {plugin.mainFile}</h3>
+              </div>
+              <div className={cardListStyle['card-button-contain']}>
+                <button>Edit</button>
+                  {plugin.active && <button onClick={() => this.toggleActivePlugin(plugin, false)}>Desactivate</button>}
+                  {!plugin.active &&
+                    <button
+                      className={cardListStyle['green-active']}
+                      onClick={() => this.toggleActivePlugin(plugin, true)}
+                    >Activate</button>}
+              </div>
+            </div>
+          </div>
         );
       });
     }
     return (
-      <div>
-        <h2>
-          <FontIcon value="extension" className={generalStyle.mainIcon} />
-          Plugins
-        </h2>
+      <div className={[layoutContentStyle['l-content'], layoutContentStyle['-list-card']].join(' ')}>
+        {this.state.showDialog &&
+          <div
+            onClick={() => this.cancel(this)}
+            className={modalQuestionStyle.backgroundcolor}
+          >
+            <div
+              className={classnames(modalQuestionStyle['c-modal-question'],
+              this.state.showDialog ? modalQuestionStyle['-open'] : null)}
+            >
+              <h3>
+                Sure that you want change the state of the plugin?
+                <div>
+                  <button
+                    className={classnames(buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'])}
+                    type="button"
+                    onClick={() => this.cancel(this)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className={classnames(buttonStyle['c-button'], buttonStyle['-basic'], buttonStyle['-small-table'])}
+                    type="button"
+                    onClick={() => this.changeActive(this)}
+                  >
+                    Acept
+                  </button>
+                </div>
+              </h3>
+            </div>
+          </div>
+        }
         {plugins}
-        <Dialog
-          actions={this.actions}
-          active={this.state.showDialog}
-          onEscKeyDown={() => this.cancel}
-          onOverlayClick={() => this.cancel}
-          title="Confirm"
-        >
-          <p>Sure that you want change the state of the plugin?</p>
-        </Dialog>
       </div>
     );
   }
@@ -89,7 +116,8 @@ class PluginView extends React.Component {
 PluginView.propTypes = {
   getPlugins: PropTypes.func,
   updatePlugin: PropTypes.func,
-  plugins: PropTypes.array
+  flushCache: PropTypes.func,
+  plugins: PropTypes.array,
 };
 
 export default PluginView;

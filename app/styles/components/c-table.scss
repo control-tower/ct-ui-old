@@ -1,0 +1,88 @@
+@import '../base';
+
+.c-table {
+
+  table {
+    background: $color-3;
+    margin: 80px auto 0;
+    padding: 20px;
+    text-align: left;
+    width: 100%;
+  }
+
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  td,
+  th {
+    margin: auto;
+    text-align: left;
+    width: 100%;
+  }
+
+  thead {
+    tr {
+      td {
+        border-bottom: 2px solid $color-2;
+        font-family: $font-family-1;
+        font-size: $font-size-normal;
+        // min-width: 200px;
+        padding: 0 15px 10px 0;
+        width: 100%;
+
+        @media #{$mq-laptop} {
+          font-size: $font-size-xxnormal;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+
+      &.-error {
+        background-color: rgba($color-7, .2);
+      }
+
+      td {
+        font-family: $font-family-2;
+        font-size: $font-size-xnormal;
+        padding: 20px 15px 20px 10px;
+
+        .content-select {
+          position: relative;
+
+          &::after {
+            background: transparent;
+            border-bottom: 2px solid $color-2;
+            border-left: 2px solid $color-2;
+            content: '';
+            height: 10px;
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            transform: rotate(-45deg);
+            width: 10px;
+          }
+
+          select {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            background-color: $color-3;
+            border: 0;
+            border-bottom: 2px solid $color-2;
+            border-radius: 0;
+            cursor: pointer;
+            font-family: $font-family-2;
+            max-width: 200px;
+            min-width: 100px;
+            outline: 0;
+            padding-bottom: 5px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

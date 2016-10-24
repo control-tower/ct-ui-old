@@ -1,0 +1,59 @@
+@import './base';
+
+:global .growler {
+  -webkit-transition: opacity .3s, margin-top .3s;
+  border-bottom: $color-9 5px solid;
+  font-family: $font-family-1;
+  background-color: $color-9;
+  color: $color-3;
+  display: block;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 999999;
+  font-size: $font-size-xnormal;
+  height: 60px;
+  margin-top: -60px;
+  line-height: 60px;
+  text-align: center;
+  transition: opacity .3s, margin-top .3s;
+}
+
+:global .growler--success {
+  background-color: $color-9;
+  margin-top: 0;
+  opacity: 1;
+  visibility: visible;
+
+}
+
+:global .growler__icon {
+  margin-bottom: -3px;
+  margin-right: 5px;
+}
+
+:global .growler--error {
+  background-color: $color-7;
+  border-bottom: $color-7 5px solid;
+  margin-top: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+:global .growler--hiding {
+  margin-top: -55px;
+  opacity: 0;
+  visibility: visible;
+}
+
+:global .growler--hidden {
+  visibility: hidden;
+}
+
+:global  #growler.error .icon {
+  margin-bottom: -6px;
+  margin-right: 5px;
+}

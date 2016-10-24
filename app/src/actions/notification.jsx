@@ -1,9 +1,11 @@
-import { SHOW_NOTIFICATION, CLEAR_NOTIFICATION } from '../constants';
-
 export function showNotification(message) {
-  return { type: SHOW_NOTIFICATION, payload: message };
-}
+  return {
+    type: 'GROWLER__SHOW',
+    growler: {
+      text: message,
+      type: 'growler--success',
+    }
+  };
 
-export function clearNotification() {
-  return { type: CLEAR_NOTIFICATION };
+
 }

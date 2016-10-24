@@ -1,7 +1,4 @@
-export const BASE_API_URL = 'http://tower.dev:9000';
-
-export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
-export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
+export const BASE_API_URL = 'http://api.resourcewatch.org';
 
 export const GET_PLUGINS = 'GET_PLUGINS';
 export const UPDATE_PLUGIN = 'UPDATE_PLUGIN';
@@ -19,3 +16,5 @@ export const LOGIN = 'LOGIN';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const GENERATE_TOKEN = 'GENERATE_TOKEN';
 export const LOGOUT = 'LOGOUT';
+
+export const SET_VISIBLE = 'SET_VISIBLE';

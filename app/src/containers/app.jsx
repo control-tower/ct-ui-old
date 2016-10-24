@@ -6,6 +6,7 @@ import { login, logout, goToLogin } from '../actions/login';
 
 const mapStateToProps = (state) => ({
   login: state.login,
+  loading: state.loading.visible,
 });
 
 const mapDispatchToProps = (dispatch) => ({
