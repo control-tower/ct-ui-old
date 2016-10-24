@@ -98,7 +98,6 @@ class UserView extends React.Component {
       <div className={[layoutContentStyle['l-content'], tableStyle['c-table']].join(' ')}>
         {this.state.showDialog &&
           <div
-            onClick={() => this.closeDialog()}
             className={modalQuestionStyle.backgroundcolor}
           >
             <div
